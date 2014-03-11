@@ -28,6 +28,11 @@ On [posts details page of my blog](http://stdout.in) or original JS widget [demo
 
 Tracking and stat storage server side you should implement yourself what ever you want.
 
+### localStorage
+
+is used to keep widget state for each user personally. It uses `widgetId|uid` key to be unique for multiple widgets on the site.
+And does not pollute request Headers with extra Cookies (if someone Kuoded a lot of your pages).
+
 ## Events
 
 * `onActive` is sent when you hover over the object (the circle is growing)
