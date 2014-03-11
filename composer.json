@@ -1,0 +1,22 @@
+{
+	"name": "ijackua/yii2-kudos-widget",
+	"description": "Yii2 widget for Svbtle style Kudos. Based on JS from https://github.com/masukomi/kudos ",
+	"keywords": ["kudos", "like", "yii", "extension", "widget"],
+	"homepage": "https://github.com/iJackUA/yii2-kudos-widget",
+	"type": "yii2-extension",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Evgeniy Kuzminov",
+			"email": "kyzminov@gmail.com"
+		}
+	],
+	"require": {
+		"yiisoft/yii2": "*"
+	},
+	"autoload": {
+		"psr-4": {
+			"ijackua\\kudos\\": ""
+		}
+	}
+}

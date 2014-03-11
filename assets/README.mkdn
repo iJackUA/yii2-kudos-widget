@@ -1,0 +1,93 @@
+# Kudos
+
+[Dustin Kurtis](http://dustincurtis.com/) came up with an excellent idea for the [Svbtle](http://svbtle.com) blogging network (go visit [Svbtle.com](http://Svbtle.com/) to see an example). He called them Kudos. They're little widgets next to each post that enable users to give "Kudos" to posts they really like. You hover over the widget, it gives a fun little animation, and changes the icon and count after a moment.
+
+This is an example implementation of that for you to use in your own blog.
+
+## Screenshots
+Start ->
+![pre-kudo](https://github.com/masukomi/kudos/raw/master/screenshots/zero_kudos.jpg)
+-> Funky Animation Here->
+![post-kudo](https://github.com/masukomi/kudos/raw/master/screenshots/kudo_given.jpg)
+-> Finish.
+
+## Demo
+[here](http://masukomi.github.com/kudos/)
+
+# Basic Usage:
+
+## WordPress people
+[ahoereth](https://github.com/ahoereth) has put together [a wordpress plugin](http://wordpress.org/extend/plugins/kudos/)
+ ([source here](https://github.com/ahoereth/wordpress-kudos)) based on this. 
+
+## Everyone else
+
+See the index.html example for information
+
+```html
+    <figure class="kudo kudoable" data-id="1">
+        <a class="kudobject">
+            <div class="opening">
+                <div class="circle">&nbsp;</div>
+            </div>
+        </a>
+        <a href="#kudo" class="count">
+            <span class="num">0</span>
+            <span class="txt">Kudos</span>
+        </a>
+    </figure>
+```
+
+```js
+$(function()
+{
+  // initialize the kudoer
+  $("figure.kudo").kudoable();
+});
+
+// bind to events on the kudos
+$("figure.kudo").on("kudo:added", function(event)
+{
+  var element = $(this);
+  var id = element.data('id');
+  // send the data to your server...
+  console.log("Kudod", element);
+});
+```
+
+## Events
+
+After kudoing an object it will emit the following events:
+
+1. `kudo:active` is sent when you hover over the object (the circle is growing)
+2. `kudo:inactive` is sent when you mouse-off the object
+3. `kudo:added` is sent when you successfully kudo something
+4. `kudo:removed` is sent when you un-kudo something
+
+## Important Note
+(Primarily for people new to HTML / CSS who don't normally write back-end code.)
+
+**This is the client side of the equation**. It will work quite well, *but* without a server-side component there will be no way to sum up all the kudos. Each person's browser will know that *they* gave it a Kudo, but if you don't store the information in some centralized location there's no way they could possibly know that anyone else gave it a Kudo. This means that the maximum number anyone will see is 1 (the one they gave it) unless you send the information to server, store it there, and insert the current count every time the page is loaded. 
+
+*This is how the internet works*. This is not a limitation of this library.
+
+This codebase specifically **does not contain any back-end code** because it would not only be different in every language it would be different in every framework, and different in every usage of every framework. Storing a running count is very easy to do, but how you should go about it is unique to how you are choosing to track user interactions.
+
+### Sub-note
+This implementation stores one cookie for every Kudo given. If someone Kudos everything you put out there you'll eventually hit the maximum number of cookies you're allowed to give them. Because dynamic cookie handling is as unique to your back end as the solution to how you'll keep track of the Kudos given to a thing, this demo-code does not address this limitation. Again, it's trivial enough to do, you just have to decide how you want to do it. 
+
+## Improvements
+Make some!  ;)
+The animation of the text isn't bad but could use some love from a css wizard. Pull-requests will be happily applied.
+
+## jQuery
+Kudos currently depends on jQuery and a good cookie library like the jQuery Cookie plugin to keep track of who's 
+voted already, but as there is so little code it would be very easy to modify to use a different library if 
+you had such a need.
+
+## License
+This code is distributed under the MIT license, however, it includes a copy of jQuery which is 
+[dual licensed](http://jquery.org/license/) under MIT or GPL (your choice) and it also includes 
+a copy of [jQuery Cookie](https://github.com/carhartl/jquery-cookie) which is licensed under the 
+MIT license. Portions of the CSS code are from the [wordpress-svbtle](https://github.com/scavone/wordpress-svbtle) 
+Wordpress theme.
