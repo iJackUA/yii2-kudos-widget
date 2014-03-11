@@ -35,6 +35,13 @@ class Kudos extends Widget
 	 */
 	public $count;
 	/**
+	 * Default class value for internal circle element
+	 * You would definitely like to put there something nice (some cole font-smile from Bootstrap or Fontello etc.)
+	 *
+	 * @var string
+	 */
+	public $defaultClass;
+	/**
 	 * JavaScript functions to fire on events
 	 *
 	 * @var string
@@ -74,7 +81,7 @@ class Kudos extends Widget
 				<a class="kudobject">
 					<div class="opening">
 						<div class="circle">
-							<i class="icon icon-emo-thumbsup"></i>
+							<i class="' . $this->defaultClass . '"></i>
 						</div>
 					</div>
 				</a>

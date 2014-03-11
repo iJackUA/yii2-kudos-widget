@@ -8,7 +8,8 @@
 	"authors": [
 		{
 			"name": "Evgeniy Kuzminov",
-			"email": "kyzminov@gmail.com"
+			"email": "kyzminov@gmail.com",
+			"homepage" : "http://stdout.in"
 		}
 	],
 	"require": {

@@ -9,6 +9,7 @@
 namespace ijackua\kudos;
 
 use yii\web\AssetBundle;
+use Yii;
 
 class KudosAssets extends AssetBundle
 {
